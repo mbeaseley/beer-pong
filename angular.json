@@ -18,7 +18,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "cc",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "ngx-pug-builders:browser",
