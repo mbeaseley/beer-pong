@@ -15,6 +15,12 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
+      "Creation/*": ["src/app/creation/*"],
+      "Game/*": ["src/app/game/*"],
+      "Shared/*": ["src/app/shared/*"],
+      "Assets/*": ["src/assets/*"],
+      "Environment/*": ["src/environments/*"],
+      "Base/*": ["src/*"]
     },
     "target": "es2017",
     "module": "es2020",
