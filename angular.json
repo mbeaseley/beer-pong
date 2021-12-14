@@ -18,10 +18,10 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "cc",
       "architect": {
         "build": {
-          "builder": "ngx-pug-builders:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/beer-pong",
             "index": "src/index.html",
@@ -34,9 +34,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/styles/variables.scss",
+              "src/assets/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/images",
+                "src/assets/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -72,7 +79,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "ngx-pug-builders:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "app:build",
             "ssl": true,
@@ -90,13 +97,13 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "ngx-pug-builders:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "beer-pong:build"
           }
         },
         "test": {
-          "builder": "ngx-pug-builders:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
@@ -108,9 +115,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/styles/variables.scss",
+              "src/assets/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/images",
+                "src/assets/styles"
+              ]
+            }
           }
         }
       }

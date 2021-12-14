@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ButtonStyle } from 'Shared/classes/button';
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.component.pug',
+  selector: 'cc-start',
+  templateUrl: './start.component.html',
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {

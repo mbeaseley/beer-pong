@@ -1,0 +1,31 @@
+@mixin flexbox($align: flex-start, $justify: flex-start) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin input-mouse {
+  @media (pointer: fine) {
+    @content;
+  }
+}
+
+$borderWidth: 2px;
+@mixin buttonFocus() {
+  background: inherit;
+  color: inherit;
+  border: $borderWidth solid $warning !important;
+}
+
+// Buttons
+$Animation-speed: 0.5s;
+@mixin accessibilityFlash() {
+  animation: accessibilityFlash ($Animation-speed * 2) 1;
+  animation-fill-mode: forwards;
+  position: absolute;
+  background: $white;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
