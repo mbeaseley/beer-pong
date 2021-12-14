@@ -1,0 +1,14 @@
+@import 'variables.scss';
+
+.cc-footer {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid $black;
+
+  &__label {
+    color: $black;
+    margin: $space-s auto;
+  }
+}

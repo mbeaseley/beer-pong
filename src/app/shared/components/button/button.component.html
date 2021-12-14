@@ -1,0 +1,54 @@
+<!-- .cc-button(*ngIf="ccButton?.displayClasses")
+  div {{ ccButton.displayClasses }} {{ ccButton.href }}
+
+  button(
+    *ngIf="!ccButton.href"
+    [ngClass]="ccButton.displayClasses"
+  ) start
+  //- if href
+  //-   a(
+  //-     [ngClass]="button.displayClasses"
+  //-     [href]="button.href"
+  //-     [aria-label]="button.description  || null"
+  //-     [title]="button.description  || null"
+  //-     [target]="target || null"
+  //-     tabindex="0"
+  //-     role="button"
+  //-   )
+  //-     ng-container(*ngTemplateOutlet="content")
+
+  //- if !href
+  //-   button(
+  //-     [ngClass]="button.displayClasses"
+  //-     [aria-label]="button?.description ?? '~'"
+  //-   )
+  //-     ng-container(*ngTemplateOutlet="content")
+    //- button(
+    //-   [ngClass]="button.displayClasses"
+    //-   [type]="button.type"
+    //-   [disabled]="button.state === 'disabled' || null"
+    //-   [aria-label]="button.description || null"
+    //-   [title]="button.description || null"
+    //-   [target]="target || null"
+    //-   [(click)]="onClick()"
+    //- )
+    //-   ng-container(*ngTemplateOutlet="content") -->
+
+<div *ngIf="ccButton" class="cc-button">
+  <ng-template #content>
+    <ng-content></ng-content>
+  </ng-template>
+
+  <a *ngIf="ccButton.href">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
+
+  <button
+    *ngIf="!ccButton.href"
+    [ngClass]="ccButton.displayClasses"
+    [type]="ccButton.type"
+    [disabled]="ccButton.state === 'disabled'"
+    [title]="ccButton.description">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </button>
+</div>
