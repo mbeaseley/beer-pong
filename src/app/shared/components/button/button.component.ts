@@ -91,7 +91,6 @@ export class ButtonComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     setTimeout(() => {
       this.ccButton = this.createButton();
-      console.log(this.ccButton);
     }, 0);
   }
 }
