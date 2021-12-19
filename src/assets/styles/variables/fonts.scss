@@ -1,0 +1,69 @@
+$ui-font-weight: 400; // normal
+$ui-font-weight--bold: 700; // bold
+
+@import './font-types.scss';
+
+$ui-font-size-1: 12px;
+$ui-font-size-2: 14px;
+$ui-font-size-3: 16px;
+$ui-font-size-4: 20px;
+$ui-font-size-5: 24px;
+$ui-font-size-6: 32px;
+
+$ui-font-height-1: 16px;
+$ui-font-height-2: 20px;
+$ui-font-height-3: 24px;
+$ui-font-height-4: 24px;
+$ui-font-height-5: 28px;
+$ui-font-height-6: 36px;
+
+/*======================
+Fonts
+======================*/
+
+/* ---------------------
+Basic font functions
+--------------------- */
+@mixin build-font($font-size, $line-height, $font-family, $weight) {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+  @include build-weight($weight);
+}
+
+@mixin build-weight($weight: false) {
+  font-weight: $ui-font-weight;
+
+  @if $weight {
+    @if $weight== 'bold' {
+      font-weight: $ui-font-weight--bold;
+    }
+  }
+}
+
+/* ---------------------
+Font types
+--------------------- */
+@mixin font-body-1($weight: false) {
+  @include build-font($ui-font-size-1, $ui-font-height-1, $ui-font-font-family, $weight);
+}
+
+@mixin font-body-2($weight: false) {
+  @include build-font($ui-font-size-2, $ui-font-height-2, $ui-font-font-family, $weight);
+}
+
+@mixin font-body-3($weight: false) {
+  @include build-font($ui-font-size-3, $ui-font-height-3, $ui-font-font-family, $weight);
+}
+
+@mixin font-body-4($weight: false) {
+  @include build-font($ui-font-size-4, $ui-font-height-4, $ui-font-font-family, $weight);
+}
+
+@mixin font-body-5($weight: false) {
+  @include build-font($ui-font-size-5, $ui-font-height-5, $ui-font-font-family, $weight);
+}
+
+@mixin font-body-6($weight: false) {
+  @include build-font($ui-font-size-6, $ui-font-height-6, $ui-font-font-family, $weight);
+}

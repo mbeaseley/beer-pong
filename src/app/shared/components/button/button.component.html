@@ -1,3 +1,27 @@
+<div *ngIf="ccButton" class="cc-button">
+  <ng-template #content>
+    <ng-content></ng-content>
+  </ng-template>
+
+  <a
+    *ngIf="ccButton.href"
+    [href]="ccButton.href"
+    [target]="target || null"
+    tabindex="0"
+    role="button">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
+
+  <button
+    *ngIf="!ccButton.href"
+    [ngClass]="ccButton.displayClasses"
+    [type]="ccButton.type"
+    [disabled]="ccButton.state === 'disabled'"
+    [title]="ccButton.description">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </button>
+</div>
+
 <!-- .cc-button(*ngIf="ccButton?.displayClasses")
   div {{ ccButton.displayClasses }} {{ ccButton.href }}
 
@@ -33,22 +57,3 @@
     //-   [(click)]="onClick()"
     //- )
     //-   ng-container(*ngTemplateOutlet="content") -->
-
-<div *ngIf="ccButton" class="cc-button">
-  <ng-template #content>
-    <ng-content></ng-content>
-  </ng-template>
-
-  <a *ngIf="ccButton.href">
-    <ng-container *ngTemplateOutlet="content"></ng-container>
-  </a>
-
-  <button
-    *ngIf="!ccButton.href"
-    [ngClass]="ccButton.displayClasses"
-    [type]="ccButton.type"
-    [disabled]="ccButton.state === 'disabled'"
-    [title]="ccButton.description">
-    <ng-container *ngTemplateOutlet="content"></ng-container>
-  </button>
-</div>

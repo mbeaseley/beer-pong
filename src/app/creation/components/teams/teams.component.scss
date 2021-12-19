@@ -1,0 +1,26 @@
+@import 'variables.scss';
+
+.cc-teams {
+  position: relative;
+  height: 100vh;
+  display: flex;
+
+  &__one,
+  &__two {
+    width: 50%;
+    height: 100%;
+  }
+
+  &__one {
+    background-color: $red;
+
+    & > div {
+      color: $red;
+      filter: invert(100%);
+    }
+  }
+
+  &__two {
+    background-color: $black;
+  }
+}

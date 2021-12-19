@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ButtonStyle } from 'Shared/classes/button';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'cc-start',
@@ -7,7 +6,16 @@ import { ButtonStyle } from 'Shared/classes/button';
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {
+  @Output() submitAction: EventEmitter<void> = new EventEmitter();
+
   constructor() {}
+
+  /**
+   * On start
+   */
+  onStart(): void {
+    this.submitAction.emit();
+  }
 
   ngOnInit(): void {}
 }

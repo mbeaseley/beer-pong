@@ -51,10 +51,10 @@ export class ButtonComponent implements OnInit, OnChanges {
    */
   private createButton(): CCButton {
     const classes = [
-      `button--size-${this.size}`,
-      `button--${this.fullWidth === true || this.fullWidth === 'true' ? 'full-width' : 'auto'}`,
-      `bw-button--style-${this.buttonStyle}`,
-      `bw-button--${this.state}`,
+      `cc-button--size-${this.size}`,
+      `cc-button--${this.fullWidth === true || this.fullWidth === 'true' ? 'full-width' : 'auto'}`,
+      `cc-button--style-${this.buttonStyle}`,
+      `cc-button--${this.state}`,
     ]
       .filter((d) => !!d)
       .join(' ');

@@ -1,0 +1,4 @@
+<div class="cc-page">
+  <cc-start *ngIf="!started" (submitAction)="onStartingGame()"></cc-start>
+  <cc-teams *ngIf="started && !teams"></cc-teams>
+</div>

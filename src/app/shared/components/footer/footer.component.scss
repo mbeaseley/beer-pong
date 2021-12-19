@@ -2,13 +2,14 @@
 
 .cc-footer {
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   border-top: 2px solid $black;
+  background-color: $black;
 
   &__label {
-    color: $black;
+    color: $white;
     margin: $space-s auto;
   }
 }
