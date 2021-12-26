@@ -1,6 +1,13 @@
 <div class="cc-teams">
-  <div class="cc-teams__one">
-    <div>hello world!</div>
+  <div #background [ngClass]="{'cc-teams--default-one': !teams.one.color, 'cc-teams--default-two': teams.one.color}">
+    <div #teamOne class="cc-teams__container"[ngClass]="{'cc-teams--hidden': teams.one.name}">
+      <cc-team-form title="Team One" colorState="#f44336" (colorChanged)="updateBackgroundColor($event)"></cc-team-form>
+    </div>
+
+    <div #teamTwo class="cc-teams__container"[ngClass]="{'cc-teams--hidden': !teams.one.name}">
+      <cc-team-form title="Team Two" colorState="#2196f3" (colorChanged)="updateBackgroundColor($event)"></cc-team-form>
+    </div>
   </div>
-  <div class="cc-teams__two"></div>
+
+  <cc-bubbles [numberOfBubbles]="50"></cc-bubbles>
 </div>

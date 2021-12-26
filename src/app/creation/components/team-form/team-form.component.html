@@ -1,0 +1,65 @@
+<div *ngIf="form" class="cc-team-form">
+  <div class="cc-team-form__header">
+    <span>{{title}}</span>
+  </div>
+
+  <div class="cc-team-form__body">
+    <form [formGroup]="form" class="form">
+      <div class="form__section">
+        <div class="form__section-header">Colours</div>
+        <color-circle [color]="colorState" width="400px" (onChangeComplete)="changeComplete($event)"></color-circle>
+      </div>
+
+      <div class="form__section">
+        <input
+          [ngClass]="{
+            'is-error': name.invalid,
+            'is-touched': name.touched,
+            'is-untouched': name.untouched
+          }"
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Team Name"
+          autocomplete="off"
+          required>
+        <div *ngIf="name.touched && name.invalid">
+          <span>This field is required</span>
+        </div>
+      </div>
+
+      <div class="form__section form__section--members">
+        <div class="form__section-header">Members</div>
+        <div *ngFor="let member of members.controls; let i = index" formGroupName="members">
+          <input
+            [ngClass]="{
+              'is-error': member.invalid,
+              'is-touched': member.touched,
+              'is-untouched': member.untouched,
+              'form__member-input--first': i === 0,
+              'form__member-input': i !== 0
+            }"
+            type="text"
+            [formControlName]="i"
+            placeholder="Member Name"
+            autocomplete="off"
+            required>
+          <div *ngIf="members.controls[i].touched && members.controls[i].invalid">
+            <span>This field is required</span>
+          </div>
+        </div>
+
+        <div class="form__button-group">
+          <button class="form__button form__button--plus" (click)="addMember()">+</button>
+          <button *ngIf="members.controls.length > 1" class="form__button form__button--minus" (click)="removeMember()">-</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="cc-team-form__footer">
+    <div class="form__section">
+      <cc-button buttonStyle="secondary" size="medium" [state]="form.invalid ? 'disabled': 'default'" (click)="onSubmit()">Submit</cc-button>
+    </div>
+  </div>
+</div>

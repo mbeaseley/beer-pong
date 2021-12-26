@@ -1,0 +1,86 @@
+@import 'variables.scss';
+
+.cc-team-form {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: $space 0;
+
+  &__header {
+    @include font-body-5();
+    color: $white;
+    text-align: center;
+    margin-bottom: $space-m;
+  }
+
+  &__body {
+    height: 500px;
+    overflow: scroll;
+    padding: 0 $space;
+  }
+
+  &__footer {
+    padding: 0 $space;
+    text-align: center;
+  }
+
+  .form {
+    &__section {
+      padding: $space-sm 0;
+
+      &-header {
+        @include font-body-4();
+        color: $white;
+        margin-bottom: $space-sm;
+      }
+    }
+
+    &__button {
+      @extend %buttonReset;
+      @include font-body-3();
+      border-radius: 100%;
+      width: 30px;
+      height: 30px;
+      margin-top: $space-sm;
+      cursor: pointer;
+
+      @include input-mouse() {
+        &:hover {
+          filter: brightness(0.7);
+        }
+      }
+
+      &--plus {
+        background: $green;
+        margin-right: $space-xs;
+      }
+
+      &--minus {
+        background: $red;
+      }
+    }
+
+    &__member-input {
+      margin-top: $space-sm;
+
+      &--first {
+        margin-top: 0;
+      }
+    }
+
+    input {
+      @include font-body-3();
+      width: 100%;
+      box-sizing: border-box;
+
+      &.is-error {
+        border: 2px solid $error;
+
+        & + div {
+          @include font-body-3();
+          color: $error;
+          margin-top: $space-xxs;
+        }
+      }
+    }
+  }
+}

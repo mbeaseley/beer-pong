@@ -1,18 +1,5 @@
 @import 'variables.scss';
 
-%buttonReset {
-  border: 0;
-  text-decoration: none !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
 :host {
   -webkit-appearance: none !important;
   appearance: none !important;
@@ -79,10 +66,19 @@
     --------------------- */
   &--size {
     &-small {
+      padding: $space-s $space-m;
+      border-radius: 14px;
+      @include font-body-2();
     }
     &-medium {
+      padding: $space-sm $space-m;
+      border-radius: 16px;
+      @include font-body-3();
     }
     &-large {
+      padding: $space-m;
+      border-radius: 20px;
+      @include font-body-4();
     }
     &-xlarge {
       padding: $space $space-m;

@@ -1,21 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-class Team {
-  name: string | undefined;
-  color: string | undefined;
-  members: string[];
-
-  constructor(name?: string, color?: string, members?: string[]) {
-    this.name = name;
-    this.color = color ?? 'red';
-    this.members = members ?? [];
-  }
-}
-
-interface Teams {
-  1: Team;
-  2: Team;
-}
+import { Teams } from 'Shared/classes/team';
 
 @Component({
   selector: 'cc-page',
