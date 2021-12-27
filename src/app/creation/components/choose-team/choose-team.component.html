@@ -1,0 +1,28 @@
+<div class="cc-choose-teams">
+  <div *ngIf="teams" class="cc-choose-teams__container">
+    <div class="cc-choose-teams__contents">
+      <div class="cc-choose-teams__header">Team {{teamSelected?.team?.name}}, choose a side!</div>
+
+      <div class="cc-choose-teams__animation">
+        <div #coinFlip class="coin">
+          <div class="coin__heads"></div>
+          <div class="coin__tails"></div>
+        </div>
+      </div>
+
+      <div *ngIf="!coinFlipMessage && !hideSelectionButton" class="cc-choose-teams__button-group">
+        <cc-button buttonStyle="secondary" size="large" (click)="onSelection('heads')">HEADS</cc-button>
+        <cc-button buttonStyle="secondary" size="large" (click)="onSelection('tails')">TAILS</cc-button>
+      </div>
+
+      <ng-container *ngIf="coinFlipMessage">
+        <div class="cc-choose-teams__message">{{coinFlipMessage}}</div>
+        <div class="cc-choose-teams__button-group">
+          <cc-button buttonStyle="secondary" size="large" (click)="onReady()">Ready</cc-button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <cc-bubbles [numberOfBubbles]="50"></cc-bubbles>
+</div>

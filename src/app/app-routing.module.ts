@@ -6,10 +6,6 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import(`./creation/creation.module`).then((m) => m.CreationModule),
   },
-  {
-    path: 'game',
-    loadChildren: () => import(`./game/game.module`).then((m) => m.GameModule),
-  },
   { path: '**', redirectTo: '' },
 ];
 

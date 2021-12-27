@@ -76,7 +76,13 @@ export class TeamFormComponent implements OnInit {
    * Submit form
    */
   onSubmit(): void {
-    console.log(this.form?.controls);
+    if (this.form?.invalid) {
+      return;
+    }
+    const members = this.members.controls.map((m) => m.value as string);
+    const team = new Team(this.name.value as string, this.color.value as string, members);
+
+    this.didSubmit.emit(team);
   }
 
   /**
@@ -84,5 +90,8 @@ export class TeamFormComponent implements OnInit {
    */
   ngOnInit(): void {
     this.form = this.constructForm();
+
+    this.color.setValue(this.colorState);
+    this.color.markAsTouched();
   }
 }

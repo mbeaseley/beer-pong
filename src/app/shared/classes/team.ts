@@ -9,13 +9,17 @@ export class Teams {
 }
 
 export class Team {
-  name: string;
-  color: string;
+  name: string | undefined;
+  color: string | undefined;
   members: string[];
+  first?: boolean;
 
   constructor(name?: string, color?: string, members?: string[]) {
-    this.name = name ?? '';
-    this.color = color ?? '';
+    this.name = name;
+    this.color = color;
     this.members = members ?? [];
+    this.first = false;
   }
 }
+
+export type TeamKey = 'one' | 'two';

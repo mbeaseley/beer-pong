@@ -1,4 +1,6 @@
 <div class="cc-page">
   <cc-start *ngIf="!started" (submitAction)="onStartingGame()"></cc-start>
-  <cc-teams *ngIf="started && !teams"></cc-teams>
+  <cc-teams *ngIf="started && !teams" (didSubmit)="onTeamsComplete($event)"></cc-teams>
+  <cc-choose-team *ngIf="teams && !isReady" [teams]="teams" (readyAction)="onReadyGame($event)"></cc-choose-team>
+  <cc-game-lobby *ngIf="isReady && teams" [teams]="teams" (endGame)="onEndGameAndReset()"></cc-game-lobby>
 </div>

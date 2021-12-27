@@ -2,7 +2,7 @@
 
 .cc-team-form {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $container-background;
   padding: $space 0;
 
   &__header {
@@ -26,6 +26,8 @@
   .form {
     &__section {
       padding: $space-sm 0;
+      position: relative;
+      z-index: 999;
 
       &-header {
         @include font-body-4();

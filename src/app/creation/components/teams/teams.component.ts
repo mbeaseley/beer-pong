@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Team, Teams } from 'Shared/classes/team';
 
 @Component({
@@ -9,6 +9,8 @@ import { Team, Teams } from 'Shared/classes/team';
 export class TeamsComponent {
   teams: Teams = new Teams();
 
+  @Output() didSubmit: EventEmitter<Teams> = new EventEmitter();
+
   @ViewChild('background') element!: ElementRef;
 
   constructor() {}
@@ -17,8 +19,14 @@ export class TeamsComponent {
    * Update background of component
    * @param color
    */
-  updateBackgroundColor(color: string): void {
-    (this.element.nativeElement as HTMLElement).style.background = color;
+  updateBackgroundColor(color?: string): void {
+    const el = this.element.nativeElement as HTMLElement;
+
+    if (el && color) {
+      el.setAttribute('style', `background-color: ${color}`);
+    } else if (el && !color) {
+      el.removeAttribute('style');
+    }
   }
 
   /**
@@ -26,6 +34,16 @@ export class TeamsComponent {
    * @param team
    */
   updateTeam(team: Team): void {
-    this.teams.one.name ? (this.teams.one = team) : (this.teams.two = team);
+    !this.teams.one.name
+      ? (this.teams.one = team)
+      : !this.teams.two.name
+      ? (this.teams.two = team)
+      : undefined;
+
+    this.updateBackgroundColor();
+
+    if (this.teams.one.name && this.teams.two.name) {
+      this.didSubmit.emit(this.teams);
+    }
   }
 }
