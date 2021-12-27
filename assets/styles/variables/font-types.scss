@@ -1,0 +1,21 @@
+$ui-font-font-family: 'Roboto', sans-serif;
+
+/**
+* Arvo 400
+**/
+@font-face {
+  font-family: $ui-font-font-family;
+  src: url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  font-display: swap;
+  font-weight: $ui-font-weight;
+}
+
+/**
+* Arvo 400
+**/
+@font-face {
+  font-family: $ui-font-font-family;
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+  font-display: swap;
+  font-weight: $ui-font-weight--bold;
+}

@@ -1,0 +1,46 @@
+@mixin flexbox($align: flex-start, $justify: flex-start) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin input-mouse {
+  @media (pointer: fine) {
+    @content;
+  }
+}
+
+$borderWidth: 2px;
+@mixin buttonFocus() {
+  background: inherit;
+  color: inherit;
+  border: $borderWidth solid $warning !important;
+}
+
+// Buttons
+$Animation-speed: 0.5s;
+@mixin accessibilityFlash() {
+  animation: accessibilityFlash ($Animation-speed * 2) 1;
+  animation-fill-mode: forwards;
+  position: absolute;
+  background: $white;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@mixin blur($radius: 0px) {
+  -webkit-filter: blur($radius);
+  -moz-filter: blur($radius);
+  -o-filter: blur($radius);
+  -ms-filter: blur($radius);
+  filter: blur($radius);
+}
+
+@mixin animation($name, $duration) {
+  -webkit-animation: $name $duration;
+  -moz-animation: $name $duration;
+  -o-animation: $name $duration;
+  animation: $name $duration;
+}
