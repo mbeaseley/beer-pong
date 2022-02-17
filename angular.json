@@ -43,7 +43,10 @@
                 "src/assets/images",
                 "src/assets/styles"
               ]
-            }
+            },
+            "allowedCommonJsDependencies": [
+              "@dicebear/adventurer"
+            ]
           },
           "configurations": {
             "production": {

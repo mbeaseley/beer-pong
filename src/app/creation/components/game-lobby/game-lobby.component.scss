@@ -4,25 +4,29 @@ $col-bg: $red;
 $col-sun: $black;
 
 .cc-game-lobby {
+  @include flexbox(center, center);
   position: relative;
   height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 
   &__container {
     @include flexbox(center, center);
+    flex-direction: column;
     width: 100%;
     height: 100%;
+
+    & > h3 {
+      @include font-body-5();
+      text-transform: capitalize;
+    }
   }
 
   &__contents {
     @include flexbox(center, center);
     flex-direction: column;
     position: relative;
-    padding: $space 0;
+    padding: 0 0 $space;
     width: 100%;
   }
 
@@ -43,5 +47,17 @@ $col-sun: $black;
       display: block;
       padding: 0 $space-sm;
     }
+  }
+
+  &__box {
+    @include flexbox(center, center);
+    flex-direction: column;
+  }
+
+  &__avatar {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin-bottom: -24px;
   }
 }

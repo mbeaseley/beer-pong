@@ -1,12 +1,17 @@
-<div *ngIf="teams" class="cc-game-lobby">
+<div *ngIf="teams && activeTeamKey" class="cc-game-lobby">
   <div #background class="cc-game-lobby__container" [ngStyle]="{'background-color': teams.one.first ? teams.one.color : teams.two.color}">
 
-    <div *ngIf="activeTeamKey" class="cc-game-lobby__contents">
-      <div class="cc-game-lobby__names">{{activeMember?.[activeTeamKey]}}</div>
+    <div class="cc-game-lobby__box">
+      <h3>{{teams?.[activeTeamKey]?.name}}</h3>
+      <cc-avatar [name]="activeMember?.[activeTeamKey]" class="cc-game-lobby__avatar"></cc-avatar>
 
-      <div *ngIf="activeMember" class="cc-game-lobby__button-group">
-        <cc-button buttonStyle="secondary" size="large" (click)="nextActiveMember()">Next</cc-button>
-        <cc-button buttonStyle="secondary" size="large" (click)="onEndGame()">End Game</cc-button>
+      <div *ngIf="activeTeamKey" class="cc-game-lobby__contents">
+        <div class="cc-game-lobby__names">{{activeMember?.[activeTeamKey]}}</div>
+
+        <div *ngIf="activeMember" class="cc-game-lobby__button-group">
+          <cc-button buttonStyle="secondary" size="large" (click)="nextActiveMember()">Next</cc-button>
+          <cc-button buttonStyle="secondary" size="large" (click)="onEndGame()">End Game</cc-button>
+        </div>
       </div>
     </div>
 

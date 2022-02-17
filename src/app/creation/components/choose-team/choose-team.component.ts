@@ -54,10 +54,10 @@ export class ChooseTeamComponent implements OnInit {
 
       if (coin === flip && this.teamSelected?.objectName) {
         teamKey = this.teamSelected.objectName;
-        this.coinFlipMessage = `Well Done! Team ${this.teamSelected.team.name} you are up first! Click button when ready!`;
+        this.coinFlipMessage = `Well Done! ${this.teamSelected.team.name} you are up first! Click button when ready!`;
       } else {
         teamKey = this.teamSelected?.objectName === 'one' ? 'two' : 'one';
-        this.coinFlipMessage = `You lose! Team ${this.teams[teamKey].name} you are up first! Click button when ready!`;
+        this.coinFlipMessage = `You lose! ${this.teams[teamKey].name} you are up first! Click button when ready!`;
       }
 
       this.teams[teamKey].first = true;
