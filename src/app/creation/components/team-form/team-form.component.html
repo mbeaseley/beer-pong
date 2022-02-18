@@ -28,6 +28,22 @@
         </div>
       </div>
 
+      <div class="form__section">
+        <div class="form__section-header">Avatar style</div>
+        <cc-avatar *ngIf="avatarName" [name]="avatarName" [style]="avatarStyle.value" class="form__avatar"></cc-avatar>
+        <select
+          [ngClass]="{
+          'is-error': name.invalid,
+          'is-touched': name.touched,
+          'is-untouched': name.untouched
+          }"
+          id="avatarStyle"
+          formControlName="avatarStyle"
+          required>
+            <option *ngFor="let style of avatarStyles" [value]="style">{{style}}</option>
+        </select>
+      </div>
+
       <div class="form__section form__section--members">
         <div class="form__section-header">Members</div>
         <div *ngFor="let member of members.controls; let i = index" formGroupName="members">
@@ -43,6 +59,7 @@
             [formControlName]="i"
             placeholder="Member Name"
             autocomplete="off"
+            (focus)="onMemberFocus(i)"
             required>
           <div *ngIf="members.controls[i].touched && members.controls[i].invalid">
             <span>This field is required</span>

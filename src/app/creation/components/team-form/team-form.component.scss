@@ -14,7 +14,7 @@
 
   &__body {
     height: 500px;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 0 $space;
   }
 
@@ -69,7 +69,8 @@
       }
     }
 
-    input {
+    input,
+    select {
       @include font-body-3();
       width: 100%;
       box-sizing: border-box;
@@ -83,6 +84,13 @@
           margin-top: $space-xxs;
         }
       }
+    }
+
+    &__avatar {
+      display: block;
+      width: 90px;
+      height: 90px;
+      margin: -8px auto 12px;
     }
   }
 }

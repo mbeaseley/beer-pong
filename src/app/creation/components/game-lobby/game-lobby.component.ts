@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { TeamKey, Teams } from 'Shared/classes/team';
+import { Team, TeamKey, Teams } from 'Shared/classes/team';
 
 @Component({
   selector: 'cc-game-lobby',
@@ -32,6 +32,10 @@ export class GameLobbyComponent implements OnInit {
   @ViewChild('background') element!: ElementRef;
 
   constructor() {}
+
+  get activeTeam(): Team {
+    return this.teams?.[this.activeTeamKey ?? 'one'];
+  }
 
   /**
    * Update background color based on team
