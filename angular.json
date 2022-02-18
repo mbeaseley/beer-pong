@@ -45,7 +45,14 @@
               ]
             },
             "allowedCommonJsDependencies": [
-              "@dicebear/adventurer"
+              "@dicebear/adventurer",
+              "@dicebear/open-peeps",
+              "@dicebear/miniavs",
+              "@dicebear/big-smile",
+              "@dicebear/big-ears",
+              "@dicebear/pixel-art",
+              "@dicebear/micah",
+              "@dicebear/avatars-bottts-sprites"
             ]
           },
           "configurations": {

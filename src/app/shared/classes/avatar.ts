@@ -1,7 +1,24 @@
 import * as adventurer from '@dicebear/adventurer';
 import * as peeps from '@dicebear/open-peeps';
+import * as miniavs from '@dicebear/miniavs';
+import * as smile from '@dicebear/big-smile';
+import * as ears from '@dicebear/big-ears';
+import * as pixel from '@dicebear/pixel-art';
+import * as micah from '@dicebear/micah';
+import * as bots from '@dicebear/avatars-bottts-sprites';
 
-export type AvatarStyle = 'adventurer' | 'peeps';
+export const AVATAR_STYLES = [
+  'adventurer',
+  'peeps',
+  'miniavs',
+  'smile',
+  'ears',
+  'pixel',
+  'micah',
+  'bots',
+] as const;
+
+export type AvatarStyle = typeof AVATAR_STYLES[number];
 
 export class Avatar {
   name: AvatarStyle | undefined;
@@ -17,14 +34,25 @@ export class Avatar {
    * @returns style
    */
   private getStyle(): any | undefined {
-    if (this.name === 'adventurer') {
-      return adventurer;
+    switch (this.name) {
+      case 'adventurer':
+        return adventurer;
+      case 'peeps':
+        return peeps;
+      case 'miniavs':
+        return miniavs;
+      case 'smile':
+        return smile;
+      case 'ears':
+        return ears;
+      case 'pixel':
+        return pixel;
+      case 'micah':
+        return micah;
+      case 'bots':
+        return bots;
+      default:
+        return undefined;
     }
-
-    if (this.name === 'peeps') {
-      return peeps;
-    }
-
-    return undefined;
   }
 }

@@ -1,3 +1,5 @@
+import { AvatarStyle } from './avatar';
+
 export class Teams {
   one: Team;
   two: Team;
@@ -10,12 +12,14 @@ export class Teams {
 
 export class Team {
   name: string | undefined;
+  avatarStyle: AvatarStyle;
   color: string | undefined;
   members: string[];
   first?: boolean;
 
   constructor(name?: string, color?: string, members?: string[]) {
     this.name = name;
+    this.avatarStyle = 'adventurer';
     this.color = color;
     this.members = members ?? [];
     this.first = false;

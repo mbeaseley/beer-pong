@@ -3,7 +3,7 @@
 
     <div class="cc-game-lobby__box">
       <h3>{{teams?.[activeTeamKey]?.name}}</h3>
-      <cc-avatar [name]="activeMember?.[activeTeamKey]" class="cc-game-lobby__avatar"></cc-avatar>
+      <cc-avatar *ngIf="activeMember && activeTeam"  [name]="activeMember?.[activeTeamKey]" [style]="activeTeam.avatarStyle" class="cc-game-lobby__avatar"></cc-avatar>
 
       <div *ngIf="activeTeamKey" class="cc-game-lobby__contents">
         <div class="cc-game-lobby__names">{{activeMember?.[activeTeamKey]}}</div>

@@ -42,10 +42,9 @@ export class AvatarComponent implements OnInit, OnChanges {
    */
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
-      if (changes.name) {
+      if (changes.name || changes.style) {
         const avatar = this.createAvatar(this.name ?? '');
         this.svg = this.sanitizer.bypassSecurityTrustHtml(avatar);
-        console.log(changes);
       }
     }, 0);
   }
