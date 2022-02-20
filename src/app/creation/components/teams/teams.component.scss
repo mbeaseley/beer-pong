@@ -18,6 +18,10 @@
     }
   }
 
+  &__selection {
+    transition: background-color 1000 linear;
+  }
+
   &__container {
     @include flexbox(center, center);
     max-width: 500px;
