@@ -44,13 +44,13 @@ $Animation-speed: 0.5s;
   filter: blur($radius);
 }
 
-@mixin animation($name, $duration, $timing: false, $direction: false, $count: false) {
+@mixin animation($name, $duration, $timing: false, $fill: false, $count: false) {
   animation-name: $name;
   -o-animation-name: $name;
   -moz-animation-name: $name;
   -webkit-animation-name: $name;
 
-  animation-duration: $direction;
+  animation-duration: $duration;
   -o-animation-duration: $duration;
   -moz-animation-duration: $duration;
   -webkit-animation-duration: $duration;
@@ -62,11 +62,11 @@ $Animation-speed: 0.5s;
     -webkit-animation-timing-function: $timing;
   }
 
-  @if $direction {
-    animation-direction: $direction;
-    -o-animation-direction: $direction;
-    -moz-animation-direction: $direction;
-    -webkit-animation-direction: $direction;
+  @if $fill {
+    animation-fill-mode: $fill;
+    -o-animation-fill-mode: $fill;
+    -moz-animation-fill-mode: $fill;
+    -webkit-animation-fill-mode: $fill;
   }
 
   @if $count {

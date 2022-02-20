@@ -8,13 +8,18 @@ import { SharedModule } from 'Shared/shared.module';
 import { routes } from './creation.routing';
 import { StartComponent } from 'Creation/components/start/start.component';
 import { TeamsComponent } from 'Creation/components/teams/teams.component';
-import { PageComponent } from 'Creation/components/page/page.component';
 import { TeamFormComponent } from 'Creation/components/team-form/team-form.component';
 import { ChooseTeamComponent } from './components/choose-team/choose-team.component';
 import { GameLobbyComponent } from './components/game-lobby/game-lobby.component';
 
 @NgModule({
-  declarations: [StartComponent, PageComponent, TeamsComponent, TeamFormComponent, ChooseTeamComponent, GameLobbyComponent],
+  declarations: [
+    StartComponent,
+    TeamsComponent,
+    TeamFormComponent,
+    ChooseTeamComponent,
+    GameLobbyComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,

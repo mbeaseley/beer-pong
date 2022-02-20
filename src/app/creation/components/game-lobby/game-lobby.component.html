@@ -1,5 +1,5 @@
 <div *ngIf="teams && activeTeamKey" class="cc-game-lobby">
-  <div #background class="cc-game-lobby__container" [ngStyle]="{'background-color': teams.one.first ? teams.one.color : teams.two.color}">
+  <div #background class="cc-game-lobby__container" [ngStyle]="{'background-color': teams.one?.first ? teams.one?.color : teams.two?.color}">
 
     <div class="cc-game-lobby__box">
       <h3>{{teams?.[activeTeamKey]?.name}}</h3>

@@ -1,13 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Team, TeamKey, Teams } from 'Shared/classes/team';
+import { RouteService } from 'Shared/services/route.service';
+import { TeamsService } from 'Shared/services/teams.service';
 
 @Component({
   selector: 'cc-game-lobby',
@@ -15,7 +9,7 @@ import { Team, TeamKey, Teams } from 'Shared/classes/team';
   styleUrls: ['./game-lobby.component.scss'],
 })
 export class GameLobbyComponent implements OnInit {
-  @Input() teams!: Teams;
+  teams: Teams = this.teamsService.getTeams();
 
   activeMember: {
     one: string | undefined;
@@ -31,10 +25,10 @@ export class GameLobbyComponent implements OnInit {
 
   @ViewChild('background') element!: ElementRef;
 
-  constructor() {}
+  constructor(private teamsService: TeamsService, private routeService: RouteService) {}
 
   get activeTeam(): Team {
-    return this.teams?.[this.activeTeamKey ?? 'one'];
+    return this.teams?.[this.activeTeamKey ?? 'one'] as Team;
   }
 
   /**
@@ -56,26 +50,27 @@ export class GameLobbyComponent implements OnInit {
     this.previousTeamKey = this.activeTeamKey as TeamKey;
     this.activeTeamKey = this.previousTeamKey === 'one' ? 'two' : 'one';
 
-    this.updateBackgroundColor(this.teams[this.activeTeamKey].color as string);
+    const aTeam = this.teams.getTeam(this.activeTeamKey);
+    const pTeam = this.teams.getTeam(this.previousTeamKey);
 
-    const index = this.teams[this.previousTeamKey as TeamKey].members.findIndex(
+    this.updateBackgroundColor(aTeam.color as string);
+
+    const index = pTeam.members.findIndex(
       (m) => m === (this.activeMember[this.previousTeamKey as TeamKey] as string),
     );
 
-    if (index === this.teams[this.previousTeamKey as TeamKey].members.length - 1) {
-      this.activeMember[this.previousTeamKey as TeamKey] =
-        this.teams[this.previousTeamKey as TeamKey].members[0];
+    if (index === pTeam.members.length - 1) {
+      this.activeMember[this.previousTeamKey as TeamKey] = pTeam.members[0];
     } else {
-      this.activeMember[this.previousTeamKey as TeamKey] =
-        this.teams[this.previousTeamKey as TeamKey].members[index + 1];
+      this.activeMember[this.previousTeamKey as TeamKey] = pTeam.members[index + 1];
     }
   }
 
   /**
    * On end game
    */
-  onEndGame(): void {
-    this.endGame.emit();
+  onEndGame(): Promise<boolean> {
+    return this.routeService.navigate('');
   }
 
   /**
@@ -83,9 +78,9 @@ export class GameLobbyComponent implements OnInit {
    */
   ngOnInit(): void {
     this.activeMember = {
-      one: this.teams.one.members[0],
-      two: this.teams.two.members[0],
+      one: this.teams.getTeam('one').members[0],
+      two: this.teams.getTeam('two').members[0],
     };
-    this.activeTeamKey = this.teams.one.first ? 'one' : 'two';
+    this.activeTeamKey = this.teams.getFirstTeamKey();
   }
 }

@@ -1,5 +1,7 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Team, Teams } from 'Shared/classes/team';
+import { RouteService } from 'Shared/services/route.service';
+import { TeamsService } from 'Shared/services/teams.service';
 
 @Component({
   selector: 'cc-teams',
@@ -7,13 +9,11 @@ import { Team, Teams } from 'Shared/classes/team';
   styleUrls: ['./teams.component.scss'],
 })
 export class TeamsComponent {
-  teams: Teams = new Teams();
-
-  @Output() didSubmit: EventEmitter<Teams> = new EventEmitter();
+  teams: Teams = this.teamsService.getTeams();
 
   @ViewChild('background') element!: ElementRef;
 
-  constructor() {}
+  constructor(private teamsService: TeamsService, private routeService: RouteService) {}
 
   /**
    * Update background of component
@@ -33,17 +33,14 @@ export class TeamsComponent {
    * Update teams
    * @param team
    */
-  updateTeam(team: Team): void {
-    !this.teams.one.name
-      ? (this.teams.one = team)
-      : !this.teams.two.name
-      ? (this.teams.two = team)
-      : undefined;
+  async updateTeam(team: Team): Promise<boolean | void> {
+    await this.teamsService.setTeam(team);
+    this.teams = this.teamsService.getTeams();
 
     this.updateBackgroundColor();
 
-    if (this.teams.one.name && this.teams.two.name) {
-      this.didSubmit.emit(this.teams);
+    if (this.teams.isReady()) {
+      return this.routeService.navigate('choose-team', true);
     }
   }
 }

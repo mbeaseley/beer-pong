@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouteService } from 'Shared/services/route.service';
 
 @Component({
   selector: 'cc-start',
@@ -6,12 +7,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent {
-  @Output() submitAction: EventEmitter<void> = new EventEmitter();
+  constructor(private routeService: RouteService) {}
 
   /**
    * On start
    */
-  onStart(): void {
-    this.submitAction.emit();
+  onStart(): Promise<boolean> {
+    return this.routeService.navigate('teams-selection', true);
   }
 }

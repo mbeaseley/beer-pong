@@ -1,13 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Team, TeamKey, Teams } from 'Shared/classes/team';
+import { RouteService } from 'Shared/services/route.service';
+import { TeamsService } from 'Shared/services/teams.service';
 
 // 0 , 1
 type CoinFlip = 'heads' | 'tails';
@@ -18,7 +12,7 @@ type CoinFlip = 'heads' | 'tails';
   styleUrls: ['./choose-team.component.scss'],
 })
 export class ChooseTeamComponent implements OnInit {
-  @Input() teams!: Teams;
+  teams: Teams = new Teams();
 
   teamSelected:
     | {
@@ -31,11 +25,9 @@ export class ChooseTeamComponent implements OnInit {
   coin: CoinFlip | undefined;
   isReady: boolean | undefined;
 
-  @Output() readyAction: EventEmitter<Teams> = new EventEmitter();
-
   @ViewChild('coinFlip') element!: ElementRef;
 
-  constructor() {}
+  constructor(private teamsService: TeamsService, private routeService: RouteService) {}
 
   /**
    * Flip coin to find out who is first
@@ -46,6 +38,7 @@ export class ChooseTeamComponent implements OnInit {
     this.coin = Math.round(Math.random()) ? 'tails' : ('heads' as const);
 
     setTimeout(() => {
+      el?.classList.remove('coin--intro');
       el?.classList.add(`coin--animate-${this.coin}`);
     }, 0);
 
@@ -58,10 +51,12 @@ export class ChooseTeamComponent implements OnInit {
         this.coinFlipMessage = `Well Done! ${this.teamSelected.team.name} you are up first! Click button when ready!`;
       } else {
         teamKey = this.teamSelected?.objectName === 'one' ? 'two' : 'one';
-        this.coinFlipMessage = `You lose! ${this.teams[teamKey].name} you are up first! Click button when ready!`;
+        this.coinFlipMessage = `You lose! ${
+          this.teams.getTeam(teamKey).name
+        } you are up first! Click button when ready!`;
       }
 
-      this.teams[teamKey].first = true;
+      (this.teams[teamKey] as Team).first = true;
       this.isReady = false;
     }, 3000);
   }
@@ -69,19 +64,21 @@ export class ChooseTeamComponent implements OnInit {
   /**
    * On ready event
    */
-  onReady(): void {
-    this.readyAction.emit(this.teams);
+  onReady(): Promise<boolean> {
+    return this.routeService.navigate('game-lobby', true);
   }
 
   /**
    * On init
    */
   ngOnInit(): void {
+    this.teams = this.teamsService.getTeams();
+
     const selectedT = Math.round(Math.random()) + 1;
 
     this.teamSelected = {
       objectName: selectedT === 1 ? 'one' : 'two',
-      team: selectedT === 1 ? this.teams.one : this.teams.two,
+      team: selectedT === 1 ? (this.teams.one as Team) : (this.teams.two as Team),
     };
   }
 }

@@ -1,10 +1,10 @@
 <div class="cc-teams">
-  <div #background class="cc-teams__selection" [ngClass]="{'cc-teams--default-one': !teams.one.color, 'cc-teams--default-two': teams.one.color}">
-    <div #teamOne class="cc-teams__container" [ngClass]="{'cc-teams--hidden': teams.one.name}">
+  <div #background class="cc-teams__selection" [ngClass]="{'cc-teams--default-one': !teams.one?.color, 'cc-teams--default-two': teams.one?.color}">
+    <div #teamOne class="cc-teams__container" [ngClass]="{'cc-teams--hidden': teams.one?.name}">
       <cc-team-form title="Team One" colorState="#f44336" (colorChanged)="updateBackgroundColor($event)" (didSubmit)="updateTeam($event)"></cc-team-form>
     </div>
 
-    <div #teamTwo class="cc-teams__container" [ngClass]="{'cc-teams--hidden': !teams.one.name}">
+    <div #teamTwo class="cc-teams__container" [ngClass]="{'cc-teams--hidden': !teams.one?.name}">
       <cc-team-form title="Team Two" colorState="#2196f3" (colorChanged)="updateBackgroundColor($event)" (didSubmit)="updateTeam($event)"></cc-team-form>
     </div>
   </div>

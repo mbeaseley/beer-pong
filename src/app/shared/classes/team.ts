@@ -1,12 +1,32 @@
 import { AvatarStyle } from './avatar';
 
 export class Teams {
-  one: Team;
-  two: Team;
+  one: Team | undefined;
+  two: Team | undefined;
 
-  constructor() {
-    this.one = new Team();
-    this.two = new Team();
+  /**
+   * Check if teams sets
+   * @returns boolean
+   */
+  public isReady(): boolean {
+    return !!this.one && !!this.two;
+  }
+
+  /**
+   * Get team
+   * @param name
+   * @returns Team
+   */
+  public getTeam(name: TeamKey): Team {
+    return this[name] as Team;
+  }
+
+  /**
+   * Get first team key
+   * @returns TeamKey
+   */
+  public getFirstTeamKey(): TeamKey {
+    return this.one?.first ? 'one' : 'two';
   }
 }
 
