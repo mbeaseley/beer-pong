@@ -28,6 +28,7 @@ export class ChooseTeamComponent implements OnInit {
     | undefined;
   hideSelectionButton: boolean = false;
   coinFlipMessage: string | undefined;
+  coin: CoinFlip | undefined;
   isReady: boolean | undefined;
 
   @Output() readyAction: EventEmitter<Teams> = new EventEmitter();
@@ -40,19 +41,19 @@ export class ChooseTeamComponent implements OnInit {
    * Flip coin to find out who is first
    * @param coin
    */
-  onSelection(coin: CoinFlip): void {
+  onSelection(selected: CoinFlip): void {
     const el = this.element.nativeElement as HTMLElement;
+    this.coin = Math.round(Math.random()) ? 'tails' : ('heads' as const);
 
-    if (el) {
-      el.classList.add('coin__rotate');
-    }
+    setTimeout(() => {
+      el?.classList.add(`coin--animate-${this.coin}`);
+    }, 0);
 
     this.hideSelectionButton = true;
     setTimeout(() => {
       let teamKey: keyof Teams;
-      const flip: CoinFlip = Math.round(Math.random()) ? 'tails' : 'heads';
 
-      if (coin === flip && this.teamSelected?.objectName) {
+      if (selected === this.coin && this.teamSelected?.objectName) {
         teamKey = this.teamSelected.objectName;
         this.coinFlipMessage = `Well Done! ${this.teamSelected.team.name} you are up first! Click button when ready!`;
       } else {
