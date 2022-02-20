@@ -44,11 +44,37 @@ $Animation-speed: 0.5s;
   filter: blur($radius);
 }
 
-@mixin animation($name, $duration, $timing, $direction) {
-  -webkit-animation: $name $duration $timing $direction;
-  -moz-animation: $name $duration $timing $direction;
-  -o-animation: $name $duration $timing $direction;
-  animation: $name $duration $timing $direction;
+@mixin animation($name, $duration, $timing: false, $direction: false, $count: false) {
+  animation-name: $name;
+  -o-animation-name: $name;
+  -moz-animation-name: $name;
+  -webkit-animation-name: $name;
+
+  animation-duration: $direction;
+  -o-animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+
+  @if $timing {
+    animation-timing-function: $timing;
+    -o-animation-timing-function: $timing;
+    -moz-animation-timing-function: $timing;
+    -webkit-animation-timing-function: $timing;
+  }
+
+  @if $direction {
+    animation-direction: $direction;
+    -o-animation-direction: $direction;
+    -moz-animation-direction: $direction;
+    -webkit-animation-direction: $direction;
+  }
+
+  @if $count {
+    animation-iteration-count: $count;
+    -o-animation-iteration-count: $count;
+    -moz-animation-iteration-count: $count;
+    -webkit-animation-iteration-count: $count;
+  }
 }
 
 @keyframes coinIntro {

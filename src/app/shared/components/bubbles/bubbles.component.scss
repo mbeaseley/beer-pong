@@ -9,7 +9,7 @@
       opacity: 0.5;
       visibility: hidden;
       @include blur(1px);
-      @include animation(bubbles, 7s infinite);
+      @include animation(bubbles, 7s, false, false, infinite);
       z-index: 1;
     }
   }
