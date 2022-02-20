@@ -1,3 +1,9 @@
+$page-height: 100vh;
+@mixin page() {
+  height: $page-height;
+  overflow: hidden;
+}
+
 @mixin flexbox($align: flex-start, $justify: flex-start) {
   display: flex;
   align-items: $align;
@@ -38,9 +44,62 @@ $Animation-speed: 0.5s;
   filter: blur($radius);
 }
 
-@mixin animation($name, $duration) {
-  -webkit-animation: $name $duration;
-  -moz-animation: $name $duration;
-  -o-animation: $name $duration;
-  animation: $name $duration;
+@mixin animation($name, $duration, $timing: false, $direction: false, $count: false) {
+  animation-name: $name;
+  -o-animation-name: $name;
+  -moz-animation-name: $name;
+  -webkit-animation-name: $name;
+
+  animation-duration: $direction;
+  -o-animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+
+  @if $timing {
+    animation-timing-function: $timing;
+    -o-animation-timing-function: $timing;
+    -moz-animation-timing-function: $timing;
+    -webkit-animation-timing-function: $timing;
+  }
+
+  @if $direction {
+    animation-direction: $direction;
+    -o-animation-direction: $direction;
+    -moz-animation-direction: $direction;
+    -webkit-animation-direction: $direction;
+  }
+
+  @if $count {
+    animation-iteration-count: $count;
+    -o-animation-iteration-count: $count;
+    -moz-animation-iteration-count: $count;
+    -webkit-animation-iteration-count: $count;
+  }
+}
+
+@keyframes coinIntro {
+  from {
+    transform: rotateX(0) scale(0);
+  }
+  to {
+    transform: rotateX(1800deg) scale(1);
+  }
+}
+
+@keyframes flipHeads {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(1800deg);
+  }
+}
+
+@keyframes flipTails {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(1980deg);
+  }
 }
