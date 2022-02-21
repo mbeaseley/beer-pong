@@ -16,7 +16,7 @@
     "importHelpers": true,
     "paths": {
       "Creation/*": ["src/app/creation/*"],
-      "Game/*": ["src/app/game/*"],
+      "Bubbles/*": ["src/app/bubbles/*"],
       "Shared/*": ["src/app/shared/*"],
       "Assets/*": ["src/assets/*"],
       "Environment/*": ["src/environments/*"],

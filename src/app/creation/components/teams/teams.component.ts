@@ -1,4 +1,11 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Team, Teams } from 'Shared/classes/team';
 import { RouteService } from 'Shared/services/route.service';
 import { TeamsService } from 'Shared/services/teams.service';
@@ -8,7 +15,7 @@ import { TeamsService } from 'Shared/services/teams.service';
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.scss'],
 })
-export class TeamsComponent {
+export class TeamsComponent implements AfterViewInit {
   teams: Teams = this.teamsService.getTeams();
 
   @ViewChild('background') element!: ElementRef;
@@ -42,5 +49,16 @@ export class TeamsComponent {
     if (this.teams.isReady()) {
       return this.routeService.navigate('choose-team', true);
     }
+  }
+
+  /**
+   * After view init
+   */
+  ngAfterViewInit(): void {
+    this.teams = this.teamsService.getTeams();
+
+    setTimeout(() => {
+      (this.element.nativeElement as HTMLElement).classList.add('cc-teams__selection--one');
+    }, 10);
   }
 }

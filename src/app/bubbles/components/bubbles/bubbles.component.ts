@@ -51,6 +51,6 @@ export class BubblesComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.createBubbles(this.numberOfBubbles);
-    }, 1000);
+    }, 100);
   }
 }

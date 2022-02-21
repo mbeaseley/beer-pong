@@ -1,42 +1,43 @@
 @import 'variables.scss';
 
-@keyframes bubbles {
-  0% {
-    visibility: visible;
-    transform: scale(0);
-    top: 100%;
-  }
-  15% {
-    transform: scale(1);
-    top: 100%;
-  }
-  100% {
-    top: -100%;
-    transform: translateY(-10%);
-  }
-}
+$start-background: linear-gradient(
+  to right,
+  $orange-1 0%,
+  $orange-2 21%,
+  $orange-3 51%,
+  $orange-3 81%,
+  $orange-4 100%
+);
+$start-width: 100%;
+$start-height: 100vh;
+$start-container-width: 100%;
+$start-container-z-index: 999;
+$start-text-height: 197px;
+$start-img-max-width: 100%;
+$start-cta-animation-delay: 3s;
+$start-cta-top: 55%;
 
 .cc-start {
   position: relative;
-  background: linear-gradient(
-    to right,
-    $orange-1 0%,
-    $orange-2 21%,
-    $orange-3 51%,
-    $orange-3 81%,
-    $orange-4 100%
-  );
-  width: 100%;
-  height: 100vh;
+  background: $start-background;
+  width: $start-width;
+  height: $start-height;
   overflow: hidden;
+
+  &--bye {
+    animation: fadeOutMoveUp 2s forwards !important;
+  }
 
   &__container,
   &__cta {
     position: absolute;
-    top: 25%;
     margin: 0 auto;
-    width: 100%;
-    z-index: 999;
+    width: $start-container-width;
+    z-index: $start-container-z-index;
+  }
+
+  &__container {
+    @include animation(fadeInMoveUp, 3s, false, forwards);
   }
 
   &__logo {
@@ -45,16 +46,19 @@
 
     &-text {
       @include flexbox();
-      height: 197px;
+      height: $start-text-height;
     }
 
     img {
-      max-width: 100%;
+      max-width: $start-img-max-width;
     }
   }
 
   &__cta {
     @include flexbox(flex-start, center);
-    top: 55%;
+    @include animation(fadeIn, 1s, false, forwards);
+    animation-delay: $start-cta-animation-delay;
+    opacity: 0;
+    top: $start-cta-top;
   }
 }

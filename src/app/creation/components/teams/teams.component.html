@@ -1,5 +1,5 @@
 <div class="cc-teams">
-  <div #background class="cc-teams__selection" [ngClass]="{'cc-teams--default-one': !teams.one?.color, 'cc-teams--default-two': teams.one?.color}">
+  <div #background class="cc-teams__selection">
     <div #teamOne class="cc-teams__container" [ngClass]="{'cc-teams--hidden': teams.one?.name}">
       <cc-team-form title="Team One" colorState="#f44336" (colorChanged)="updateBackgroundColor($event)" (didSubmit)="updateTeam($event)"></cc-team-form>
     </div>
@@ -9,5 +9,5 @@
     </div>
   </div>
 
-  <cc-bubbles [numberOfBubbles]="50"></cc-bubbles>
+  <!-- <cc-bubbles [numberOfBubbles]="50"></cc-bubbles> -->
 </div>
